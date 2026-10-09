@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | VoteConnect</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================= LOGIN PAGE ================= */
+
+        .login-page {
+            min-height: calc(100vh - 78px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 60px 5%;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(0, 195, 255, 0.25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(135, 50, 255, 0.25),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #eaf9ff,
+                    #f5f0ff,
+                    #fff8ed
+                );
+        }
+
+
+        .login-container {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            min-height: 570px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            background: white;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(30, 45, 100, 0.18);
+        }
+
+
+        /* ================= LEFT SIDE ================= */
+
+        .login-left {
+
+            padding: 55px;
+
+            color: white;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #09245a,
+                    #155bea,
+                    #7525e8
+                );
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .login-left::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.08);
+
+            top: -100px;
+            right: -100px;
+        }
+
+
+        .login-left::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            background: rgba(0,220,255,0.12);
+
+            bottom: -100px;
+            left: -80px;
+        }
+
+
+        .login-logo {
+
+            font-size: 55px;
+
+            margin-bottom: 20px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .login-left h1 {
+
+            font-size: 42px;
+
+            margin-bottom: 18px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .login-left h1 span {
+
+            color: #35ddff;
+        }
+
+
+        .login-left > p {
+
+            color: #d8e3ff;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+
+            max-width: 400px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .login-benefits {
+
+            margin-top: 30px;
+
+            display: grid;
+
+            gap: 15px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .login-benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #edf3ff;
+
+            font-size: 14px;
+        }
+
+
+        .login-benefit span {
+
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: rgba(255,255,255,0.15);
+
+            border-radius: 50%;
+        }
+
+
+        /* ================= RIGHT SIDE ================= */
+
+        .login-right {
+
+            padding: 55px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .login-heading {
+
+            margin-bottom: 30px;
+        }
+
+
+        .login-heading small {
+
+            color: #7041e8;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            font-size: 12px;
+        }
+
+
+        .login-heading h2 {
+
+            color: #14265b;
+
+            font-size: 35px;
+
+            margin: 8px 0;
+        }
+
+
+        .login-heading p {
+
+            color: #71809b;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .login-form {
+
+            display: grid;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+
+            display: grid;
+
+            gap: 8px;
+        }
+
+
+        .form-group label {
+
+            color: #26365d;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .input-box {
+
+            position: relative;
+        }
+
+
+        .input-box span {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 18px;
+        }
+
+
+        .input-box input {
+
+            width: 100%;
+
+            padding: 14px 15px 14px 48px;
+
+            border: 1px solid #d9dfec;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+            background: #fbfcff;
+        }
+
+
+        .input-box input:focus {
+
+            border-color: #5c43e8;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(92,67,232,0.08);
+        }
+
+
+        /* ================= LOGIN OPTIONS ================= */
+
+        .login-options {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 3px 0 8px;
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #687892;
+
+            font-size: 13px;
+        }
+
+
+        .forgot {
+
+            color: #5b3ee5;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* ================= LOGIN BUTTON ================= */
+
+        .login-submit {
+
+            border: none;
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #155bea,
+                    #8225ed
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 25px rgba(70,55,220,0.25);
+        }
+
+
+        .login-submit:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 30px rgba(70,55,220,0.35);
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        #loginMessage {
+
+            display: none;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        /* ================= REGISTER ================= */
+
+        .register-text {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #71809b;
+
+            font-size: 14px;
+        }
+
+
+        .register-text a {
+
+            color: #653ee5;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        .admin-login-link {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid #edf0f6;
+
+        }
+
+
+        .admin-login-link a {
+
+            text-decoration: none;
+
+            color: #155bea;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:750px) {
+
+            .login-container {
+
+                grid-template-columns: 1fr;
+            }
+
+            .login-left {
+
+                padding: 40px;
+
+                text-align: center;
+            }
+
+            .login-left > p {
+
+                margin: auto;
+            }
+
+            .login-benefits {
+
+                text-align: left;
+            }
+
+            .login-right {
+
+                padding: 40px 30px;
+            }
+
+        }
+
+
+        @media(max-width:450px) {
+
+            .login-page {
+
+                padding: 25px 15px;
+            }
+
+            .login-left {
+
+                padding: 35px 25px;
+            }
+
+            .login-left h1 {
+
+                font-size: 32px;
+            }
+
+            .login-right {
+
+                padding: 35px 22px;
+            }
+
+            .login-options {
+
+                flex-direction: column;
+
+                gap: 10px;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            🗳️
+        </div>
+
+        <div>
+
+            <h2>
+                Vote<span>Connect</span>
+            </h2>
+
+            <small>
+                Online Voting System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#services">
+            Services
+        </a>
+
+        <a href="index.html#how">
+            How It Works
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+        <a href="index.html#about">
+            About
+        </a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <a href="login.html"
+           class="login-btn">
+            Login
+        </a>
+
+        <a href="signup.html"
+           class="register-btn">
+            Register
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= LOGIN PAGE ================= -->
+
+<section class="login-page">
+
+
+    <div class="login-container">
+
+
+        <!-- LEFT -->
+
+        <div class="login-left">
+
+            <div class="login-logo">
+                🗳️
+            </div>
+
+            <h1>
+                Welcome <span>Back!</span>
+            </h1>
+
+            <p>
+                Login to your VoteConnect account and
+                participate in the digital voting process.
+                Your vote is your voice.
+            </p>
+
+
+            <div class="login-benefits">
+
+                <div class="login-benefit">
+
+                    <span>🔒</span>
+
+                    Secure Voting
+
+                </div>
+
+
+                <div class="login-benefit">
+
+                    <span>⚡</span>
+
+                    Fast & Easy
+
+                </div>
+
+
+                <div class="login-benefit">
+
+                    <span>📊</span>
+
+                    Transparent Results
+
+                </div>
+
+
+                <div class="login-benefit">
+
+                    <span>✓</span>
+
+                    One Person, One Vote
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="login-right">
+
+
+            <div class="login-heading">
+
+                <small>
+                    VOTER LOGIN
+                </small>
+
+                <h2>
+                    Login to Your Account
+                </h2>
+
+                <p>
+                    Enter your voter ID and password to continue.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm"
+                  class="login-form">
+
+
+                <!-- VOTER ID -->
+
+                <div class="form-group">
+
+                    <label for="voterId">
+                        Voter ID
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>🪪</span>
+
+                        <input
+                            type="text"
+                            id="voterId"
+                            placeholder="Enter your Voter ID"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>🔐</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="login-options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a href="#"
+                       class="forgot"
+                       onclick="showForgotMessage()">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div id="loginMessage"></div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-submit">
+
+                    Login to Vote →
+
+                </button>
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <div class="register-text">
+
+                Don't have an account?
+
+                <a href="signup.html">
+                    Register Now
+                </a>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="admin-login-link">
+
+                <a href="admin-login.html">
+                    👨‍💼 Login as Administrator
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginMessage =
+    document.getElementById("loginMessage");
+
+
+loginForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const voterId =
+        document.getElementById("voterId")
+        .value
+        .trim();
+
+    const password =
+        document.getElementById("password")
+        .value;
+
+
+    // Get registered users
+    const users =
+        JSON.parse(
+            localStorage.getItem("voters")
+        ) || [];
+
+
+    // Find user
+    const user =
+        users.find(function(item) {
+
+            return (
+                item.voterId.toLowerCase() ===
+                voterId.toLowerCase()
+                &&
+                item.password === password
+            );
+
+        });
+
+
+    if (!user) {
+
+        loginMessage.style.display = "block";
+
+        loginMessage.style.background = "#ffe5e5";
+
+        loginMessage.style.color = "#d11a2a";
+
+        loginMessage.innerHTML =
+            "❌ Invalid Voter ID or Password.";
+
+        return;
+    }
+
+
+    // Save current user
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user)
+    );
+
+
+    loginMessage.style.display = "block";
+
+    loginMessage.style.background = "#dcfce7";
+
+    loginMessage.style.color = "#087443";
+
+    loginMessage.innerHTML =
+        "✅ Login successful! Redirecting...";
+
+
+    setTimeout(function() {
+
+        window.location.href =
+            "user-dashboard.html";
+
+    }, 1000);
+
+});
+
+
+function showForgotMessage() {
+
+    alert(
+        "Please contact the administrator to reset your password."
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

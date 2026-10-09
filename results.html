@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Election Results | VoteConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #eef2ff, #f5f3ff, #e0f2fe);
+            min-height: 100vh;
+        }
+
+        .results-page {
+            padding: 50px 8%;
+        }
+
+        /* HEADER */
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .results-tag {
+            display: inline-block;
+            background: #ede9fe;
+            color: #6d28d9;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .results-header h1 {
+            font-size: 42px;
+            color: #172554;
+            margin-bottom: 10px;
+        }
+
+        .results-header p {
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        /* ELECTION BANNER */
+
+        .result-banner {
+            max-width: 1100px;
+            margin: auto;
+            background: linear-gradient(
+                135deg,
+                #312e81,
+                #6d28d9,
+                #9333ea
+            );
+            color: white;
+            border-radius: 25px;
+            padding: 30px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.25);
+        }
+
+        .result-banner h2 {
+            margin-bottom: 8px;
+        }
+
+        .result-banner p {
+            opacity: 0.9;
+        }
+
+        .status {
+            background: rgba(255,255,255,0.18);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        /* STATS */
+
+        .stats {
+            max-width: 1100px;
+            margin: 35px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card h3 {
+            font-size: 30px;
+            color: #4f46e5;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #64748b;
+        }
+
+        /* RESULTS */
+
+        .results-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .results-container h2 {
+            color: #172554;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .result-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .candidate-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .candidate-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #9333ea
+            );
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 19px;
+        }
+
+        .candidate-name {
+            color: #172554;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .candidate-party {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .vote-count {
+            text-align: right;
+        }
+
+        .vote-count strong {
+            display: block;
+            font-size: 27px;
+            color: #4f46e5;
+        }
+
+        .vote-count span {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* PROGRESS BAR */
+
+        .progress-background {
+            height: 14px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            background: linear-gradient(
+                90deg,
+                #4f46e5,
+                #9333ea
+            );
+            transition: width 1s ease;
+        }
+
+        .percentage {
+            margin-top: 10px;
+            color: #6d28d9;
+            font-weight: 700;
+        }
+
+        /* WINNER */
+
+        .winner {
+            border: 3px solid #f59e0b;
+            background: linear-gradient(
+                135deg,
+                #fffbeb,
+                #ffffff
+            );
+        }
+
+        .winner-label {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* NOTE */
+
+        .results-note {
+            max-width: 1100px;
+            margin: 35px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #64748b;
+            box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+        }
+
+        /* BUTTON */
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 14px 28px;
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .results-page {
+                padding: 35px 5%;
+            }
+
+            .results-header h1 {
+                font-size: 32px;
+            }
+
+            .result-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .results-header h1 {
+                font-size: 28px;
+            }
+
+            .result-card {
+                padding: 20px;
+            }
+
+            .candidate-avatar {
+                width: 50px;
+                height: 50px;
+            }
+
+            .candidate-name {
+                font-size: 17px;
+            }
+
+            .vote-count strong {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🗳️ VoteConnect
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="user-dashboard.html">Dashboard</a>
+            <a href="vote.html">Cast Vote</a>
+            <a href="results.html" class="active">Results</a>
+            <a href="index.html#about">About</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         RESULTS PAGE
+    ========================== -->
+
+    <main class="results-page">
+
+        <section class="results-header">
+
+            <span class="results-tag">
+                📊 ELECTION RESULTS
+            </span>
+
+            <h1>Election Results</h1>
+
+            <p>
+                View the current voting results for the General Election 2026.
+            </p>
+
+        </section>
+
+
+        <!-- Election Banner -->
+
+        <section class="result-banner">
+
+            <div>
+
+                <h2>🇮🇳 General Election 2026</h2>
+
+                <p>
+                    VoteConnect Online Voting System
+                </p>
+
+            </div>
+
+            <div class="status">
+                🟢 Results Available
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🗳️
+                </div>
+
+                <h3 id="totalVotes">
+                    0
+                </h3>
+
+                <p>
+                    Total Votes
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <h3 id="totalCandidates">
+                    4
+                </h3>
+
+                <p>
+                    Candidates
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <h3 id="leadingCandidate">
+                    -
+                </h3>
+
+                <p>
+                    Leading Candidate
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Candidate Results -->
+
+        <section class="results-container">
+
+            <h2>
+                Candidate-wise Results
+            </h2>
+
+
+            <!-- Candidate 1 -->
+
+            <div class="result-card" id="card-candidate1">
+
+                <div class="result-top">
+
+                    <div class="candidate-details">
+
+                        <div class="candidate-avatar">
+                            AS
+                        </div>
+
+                        <div>
+
+                            <div class="candidate-name">
+                                Aarav Sharma
+                            </div>
+
+                            <div class="candidate-party">
+                                People's Progress
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="vote-count">
+
+                        <strong id="votes-candidate1">
+                            0
+                        </strong>
+
+                        <span>
+                            votes
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="progress-background">
+
+                    <div
+                        class="progress-bar"
+                        id="bar-candidate1">
+                    </div>
+
+                </div>
+
+                <div
+                    class="percentage"
+                    id="percent-candidate1">
+
+                    0%
+
+                </div>
+
+            </div>
+
+
+            <!-- Candidate 2 -->
+
+            <div class="result-card" id="card-candidate2">
+
+                <div class="result-top">
+
+                    <div class="candidate-details">
+
+                        <div class="candidate-avatar">
+                            PR
+                        </div>
+
+                        <div>
+
+                            <div class="candidate-name">
+                                Priya Reddy
+                            </div>
+
+                            <div class="candidate-party">
+                                United Development
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="vote-count">
+
+                        <strong id="votes-candidate2">
+                            0
+                        </strong>
+
+                        <span>
+                            votes
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="progress-background">
+
+                    <div
+                        class="progress-bar"
+                        id="bar-candidate2">
+                    </div>
+
+                </div>
+
+                <div
+                    class="percentage"
+                    id="percent-candidate2">
+
+                    0%
+
+                </div>
+
+            </div>
+
+
+            <!-- Candidate 3 -->
+
+            <div class="result-card" id="card-candidate3">
+
+                <div class="result-top">
+
+                    <div class="candidate-details">
+
+                        <div class="candidate-avatar">
+                            RK
+                        </div>
+
+                        <div>
+
+                            <div class="candidate-name">
+                                Rahul Kumar
+                            </div>
+
+                            <div class="candidate-party">
+                                National Youth Front
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="vote-count">
+
+                        <strong id="votes-candidate3">
+                            0
+                        </strong>
+
+                        <span>
+                            votes
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="progress-background">
+
+                    <div
+                        class="progress-bar"
+                        id="bar-candidate3">
+                    </div>
+
+                </div>
+
+                <div
+                    class="percentage"
+                    id="percent-candidate3">
+
+                    0%
+
+                </div>
+
+            </div>
+
+
+            <!-- Candidate 4 -->
+
+            <div class="result-card" id="card-candidate4">
+
+                <div class="result-top">
+
+                    <div class="candidate-details">
+
+                        <div class="candidate-avatar">
+                            SP
+                        </div>
+
+                        <div>
+
+                            <div class="candidate-name">
+                                Sneha Patel
+                            </div>
+
+                            <div class="candidate-party">
+                                Progressive Alliance
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="vote-count">
+
+                        <strong id="votes-candidate4">
+                            0
+                        </strong>
+
+                        <span>
+                            votes
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="progress-background">
+
+                    <div
+                        class="progress-bar"
+                        id="bar-candidate4">
+                    </div>
+
+                </div>
+
+                <div
+                    class="percentage"
+                    id="percent-candidate4">
+
+                    0%
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Note -->
+
+        <div class="results-note">
+
+            📌
+            Results are automatically calculated from votes
+            submitted through the VoteConnect system.
+
+        </div>
+
+
+        <a
+            href="user-dashboard.html"
+            class="back-button">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* --------------------------------
+           CANDIDATES
+        -------------------------------- */
+
+        const candidates = {
+
+            candidate1: "Aarav Sharma",
+            candidate2: "Priya Reddy",
+            candidate3: "Rahul Kumar",
+            candidate4: "Sneha Patel"
+
+        };
+
+
+        /* --------------------------------
+           GET VOTES
+        -------------------------------- */
+
+        let votes =
+            JSON.parse(
+                localStorage.getItem("votes")
+            ) || {
+
+                candidate1: 0,
+                candidate2: 0,
+                candidate3: 0,
+                candidate4: 0
+
+            };
+
+
+        /* --------------------------------
+           CALCULATE TOTAL
+        -------------------------------- */
+
+        let totalVotes = 0;
+
+        Object.values(votes).forEach(function(vote) {
+
+            totalVotes += Number(vote);
+
+        });
+
+
+        document.getElementById("totalVotes")
+            .textContent = totalVotes;
+
+
+        /* --------------------------------
+           DISPLAY RESULTS
+        -------------------------------- */
+
+        Object.keys(candidates).forEach(function(id) {
+
+            const voteCount =
+                Number(votes[id]) || 0;
+
+
+            /* Vote count */
+
+            document.getElementById(
+                "votes-" + id
+            ).textContent = voteCount;
+
+
+            /* Percentage */
+
+            let percentage = 0;
+
+            if (totalVotes > 0) {
+
+                percentage =
+                    (voteCount / totalVotes) * 100;
+
+            }
+
+
+            percentage =
+                percentage.toFixed(1);
+
+
+            document.getElementById(
+                "percent-" + id
+            ).textContent =
+                percentage + "%";
+
+
+            /* Progress bar */
+
+            document.getElementById(
+                "bar-" + id
+            ).style.width =
+                percentage + "%";
+
+        });
+
+
+        /* --------------------------------
+           FIND LEADER
+        -------------------------------- */
+
+        let leaderId = null;
+
+        let highestVotes = -1;
+
+
+        Object.keys(candidates).forEach(function(id) {
+
+            const voteCount =
+                Number(votes[id]) || 0;
+
+
+            if (voteCount > highestVotes) {
+
+                highestVotes = voteCount;
+
+                leaderId = id;
+
+            }
+
+        });
+
+
+        if (totalVotes === 0) {
+
+            document.getElementById(
+                "leadingCandidate"
+            ).textContent = "No votes";
+
+        } else {
+
+            document.getElementById(
+                "leadingCandidate"
+            ).textContent =
+                candidates[leaderId];
+
+            /* Highlight winner */
+
+            document.getElementById(
+                "card-" + leaderId
+            ).classList.add("winner");
+
+            const winnerCard =
+                document.getElementById(
+                    "card-" + leaderId
+                );
+
+            const winnerLabel =
+                document.createElement("span");
+
+            winnerLabel.className =
+                "winner-label";
+
+            winnerLabel.textContent =
+                "🏆 CURRENT LEADER";
+
+            winnerCard.insertBefore(
+                winnerLabel,
+                winnerCard.firstChild
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

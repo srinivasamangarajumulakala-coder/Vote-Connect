@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | VoteConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef7ff,
+                    #f7f0ff,
+                    #fff8ed
+                );
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            padding: 50px 6%;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .admin-header {
+
+            max-width: 1200px;
+            margin: auto auto 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .admin-header h1 {
+            color: #172554;
+            margin-bottom: 8px;
+        }
+
+        .admin-header p {
+            color: #64748b;
+        }
+
+        .admin-logout {
+
+            border: none;
+
+            padding: 12px 22px;
+
+            border-radius: 25px;
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= WELCOME BANNER ================= */
+
+        .admin-banner {
+
+            max-width: 1200px;
+
+            margin: auto auto 30px;
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #111827,
+                    #4338ca,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 15px 35px rgba(50,40,150,0.22);
+        }
+
+        .admin-banner h2 {
+            margin-bottom: 8px;
+        }
+
+        .admin-banner p {
+            color: #ddd6fe;
+        }
+
+
+        /* ================= STATISTICS ================= */
+
+        .stats-grid {
+
+            max-width: 1200px;
+
+            margin: auto auto 30px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .stat-card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px rgba(30,50,100,0.08);
+        }
+
+        .stat-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card h3 {
+
+            font-size: 28px;
+
+            color: #172554;
+
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #64748b;
+        }
+
+
+        /* ================= SECTION ================= */
+
+        .admin-section {
+
+            max-width: 1200px;
+
+            margin: 30px auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(30,50,100,0.08);
+        }
+
+        .admin-section h2 {
+
+            color: #172554;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= RESULT BAR ================= */
+
+        .result-item {
+            margin-bottom: 22px;
+        }
+
+        .result-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 7px;
+        }
+
+        .result-top strong {
+            color: #334155;
+        }
+
+        .result-bar {
+
+            width: 100%;
+
+            height: 13px;
+
+            background: #e5e7eb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .result-fill {
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            border-radius: 20px;
+
+            transition: width 0.5s;
+        }
+
+
+        /* ================= TABLE ================= */
+
+        .table-container {
+
+            overflow-x: auto;
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 850px;
+        }
+
+        th {
+
+            background: #eef2ff;
+
+            color: #3730a3;
+
+            padding: 15px;
+
+            text-align: left;
+
+            font-size: 13px;
+        }
+
+        td {
+
+            padding: 15px;
+
+            border-bottom:
+                1px solid #edf0f6;
+
+            color: #475569;
+
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #fafaff;
+        }
+
+
+        .voted-badge {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .not-voted-badge {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= EMPTY MESSAGE ================= */
+
+        .empty-message {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #94a3b8;
+        }
+
+
+        /* ================= SECURITY ================= */
+
+        .security {
+
+            max-width: 1200px;
+
+            margin: 30px auto;
+
+            padding: 20px;
+
+            background: white;
+
+            border-left:
+                5px solid #22c55e;
+
+            border-radius: 12px;
+
+            color: #64748b;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:900px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .admin-page {
+                padding: 35px 5%;
+            }
+
+            .stats-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            🗳️
+        </div>
+
+        <div>
+
+            <h2>
+                Vote<span>Connect</span>
+            </h2>
+
+            <small>
+                Admin Panel
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="admin-dashboard.html"
+           class="active">
+            Dashboard
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= ADMIN PAGE ================= -->
+
+<main class="admin-page">
+
+
+    <!-- HEADER -->
+
+    <div class="admin-header">
+
+        <div>
+
+            <h1>
+                👨‍💼 Admin Dashboard
+            </h1>
+
+            <p>
+                Monitor voters, votes and election activity.
+            </p>
+
+        </div>
+
+
+        <button
+            class="admin-logout"
+            onclick="adminLogout()">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+
+    <!-- BANNER -->
+
+    <div class="admin-banner">
+
+        <h2>
+            🗳️ General Election 2026
+        </h2>
+
+        <p>
+            Real-time voting information is displayed
+            below from the registered users.
+        </p>
+
+    </div>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <h3 id="totalVoters">
+                0
+            </h3>
+
+            <p>
+                Registered Voters
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🗳️
+            </div>
+
+            <h3 id="totalVotes">
+                0
+            </h3>
+
+            <p>
+                Votes Cast
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📈
+            </div>
+
+            <h3 id="turnout">
+                0%
+            </h3>
+
+            <p>
+                Voter Turnout
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <h3 id="leader">
+                -
+            </h3>
+
+            <p>
+                Leading Candidate
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CANDIDATE RESULTS ================= -->
+
+    <section class="admin-section">
+
+        <h2>
+            📊 Candidate-wise Vote Count
+        </h2>
+
+
+        <div class="result-item">
+
+            <div class="result-top">
+
+                <strong>
+                    Aarav Sharma
+                </strong>
+
+                <span id="candidate1Count">
+                    0 votes
+                </span>
+
+            </div>
+
+            <div class="result-bar">
+
+                <div
+                    id="candidate1Bar"
+                    class="result-fill"
+                    style="width:0%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="result-top">
+
+                <strong>
+                    Priya Reddy
+                </strong>
+
+                <span id="candidate2Count">
+                    0 votes
+                </span>
+
+            </div>
+
+            <div class="result-bar">
+
+                <div
+                    id="candidate2Bar"
+                    class="result-fill"
+                    style="width:0%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="result-top">
+
+                <strong>
+                    Rahul Kumar
+                </strong>
+
+                <span id="candidate3Count">
+                    0 votes
+                </span>
+
+            </div>
+
+            <div class="result-bar">
+
+                <div
+                    id="candidate3Bar"
+                    class="result-fill"
+                    style="width:0%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="result-top">
+
+                <strong>
+                    Sneha Patel
+                </strong>
+
+                <span id="candidate4Count">
+                    0 votes
+                </span>
+
+            </div>
+
+            <div class="result-bar">
+
+                <div
+                    id="candidate4Bar"
+                    class="result-fill"
+                    style="width:0%">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RECENT VOTES ================= -->
+
+    <section class="admin-section">
+
+        <h2>
+            🗳️ Votes Cast by Users
+        </h2>
+
+        <p style="color:#64748b; margin-bottom:20px;">
+            This table shows the votes submitted by registered users.
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            Voter Name
+                        </th>
+
+                        <th>
+                            Voter ID
+                        </th>
+
+                        <th>
+                            Candidate
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Time
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="voteTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= REGISTERED VOTERS ================= -->
+
+    <section class="admin-section">
+
+        <h2>
+            👥 Registered Voters
+        </h2>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Voter ID
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="voterTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECURITY -->
+
+    <div class="security">
+
+        🔒 <strong>Admin Security:</strong>
+
+        This dashboard displays voting information
+        stored by the VoteConnect frontend application.
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+    /* ==================================================
+       ADMIN LOGIN CHECK
+    ================================================== */
+
+    const adminLoggedIn =
+        localStorage.getItem(
+            "adminLoggedIn"
+        );
+
+
+    if (adminLoggedIn !== "true") {
+
+        alert(
+            "Please login as administrator first."
+        );
+
+        window.location.href =
+            "admin-login.html";
+
+    }
+
+
+    /* ==================================================
+       LOAD DATA
+    ================================================== */
+
+    function loadAdminDashboard() {
+
+
+        /* ================= VOTERS ================= */
+
+        const voters =
+            JSON.parse(
+                localStorage.getItem(
+                    "voters"
+                )
+            ) || [];
+
+
+        /* ================= VOTES ================= */
+
+        const votes =
+            JSON.parse(
+                localStorage.getItem(
+                    "votes"
+                )
+            ) || {
+
+                candidate1: 0,
+                candidate2: 0,
+                candidate3: 0,
+                candidate4: 0
+
+            };
+
+
+        /* ================= VOTE RECORDS ================= */
+
+        const voteRecords =
+            JSON.parse(
+                localStorage.getItem(
+                    "voteRecords"
+                )
+            ) || [];
+
+
+        /* ================= TOTALS ================= */
+
+        const totalVoters =
+            voters.length;
+
+
+        const totalVotes =
+            voteRecords.length;
+
+
+        document.getElementById(
+            "totalVoters"
+        ).textContent =
+            totalVoters;
+
+
+        document.getElementById(
+            "totalVotes"
+        ).textContent =
+            totalVotes;
+
+
+        /* ================= TURNOUT ================= */
+
+        let turnout = 0;
+
+
+        if (totalVoters > 0) {
+
+            turnout =
+                Math.round(
+                    (
+                        totalVotes /
+                        totalVoters
+                    ) * 100
+                );
+
+        }
+
+
+        document.getElementById(
+            "turnout"
+        ).textContent =
+            turnout + "%";
+
+
+        /* ================= CANDIDATES ================= */
+
+        const candidates = {
+
+            candidate1:
+                "Aarav Sharma",
+
+            candidate2:
+                "Priya Reddy",
+
+            candidate3:
+                "Rahul Kumar",
+
+            candidate4:
+                "Sneha Patel"
+
+        };
+
+
+        const candidateIds =
+            Object.keys(candidates);
+
+
+        let highestVotes = -1;
+
+        let leadingCandidate = "-";
+
+
+        candidateIds.forEach(
+            function(id) {
+
+                const count =
+                    Number(
+                        votes[id] || 0
+                    );
+
+
+                document.getElementById(
+                    id + "Count"
+                ).textContent =
+                    count + " votes";
+
+
+                let percentage = 0;
+
+
+                if (totalVotes > 0) {
+
+                    percentage =
+                        (
+                            count /
+                            totalVotes
+                        ) * 100;
+
+                }
+
+
+                document.getElementById(
+                    id + "Bar"
+                ).style.width =
+                    percentage + "%";
+
+
+                if (
+                    count >
+                    highestVotes
+                ) {
+
+                    highestVotes =
+                        count;
+
+                    leadingCandidate =
+                        candidates[id];
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "leader"
+        ).textContent =
+            leadingCandidate;
+
+
+        /* ==================================================
+           VOTE RECORD TABLE
+        ================================================== */
+
+        const voteTable =
+            document.getElementById(
+                "voteTableBody"
+            );
+
+
+        voteTable.innerHTML = "";
+
+
+        if (voteRecords.length === 0) {
+
+            voteTable.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        class="empty-message">
+
+                        🗳️ No votes have been cast yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+        else {
+
+            voteRecords
+                .slice()
+                .reverse()
+                .forEach(
+                    function(record, index) {
+
+                        const row =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+                        row.innerHTML = `
+
+                            <td>
+                                ${index + 1}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    ${record.voterName}
+                                </strong>
+                            </td>
+
+                            <td>
+                                ${record.voterId}
+                            </td>
+
+                            <td>
+                                🗳️
+                                ${record.candidateName}
+                            </td>
+
+                            <td>
+                                ${record.date}
+                            </td>
+
+                            <td>
+                                ${record.time}
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="voted-badge">
+
+                                    ✓ VOTED
+
+                                </span>
+
+                            </td>
+
+                        `;
+
+
+                        voteTable.appendChild(
+                            row
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* ==================================================
+           REGISTERED VOTERS TABLE
+        ================================================== */
+
+        const voterTable =
+            document.getElementById(
+                "voterTableBody"
+            );
+
+
+        voterTable.innerHTML = "";
+
+
+        if (voters.length === 0) {
+
+            voterTable.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="empty-message">
+
+                        👥 No registered voters found.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+        else {
+
+            voters.forEach(
+                function(voter, index) {
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    const status =
+                        voter.hasVoted
+                            ? `
+                                <span
+                                    class="voted-badge">
+
+                                    ✓ VOTED
+
+                                </span>
+                              `
+                            : `
+                                <span
+                                    class="not-voted-badge">
+
+                                    NOT VOTED
+
+                                </span>
+                              `;
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${index + 1}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${voter.name}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${voter.voterId}
+                        </td>
+
+                        <td>
+                            ${voter.email}
+                        </td>
+
+                        <td>
+                            ${status}
+                        </td>
+
+                    `;
+
+
+                    voterTable.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* ==================================================
+       ADMIN LOGOUT
+    ================================================== */
+
+    function adminLogout() {
+
+        const confirmLogout =
+            confirm(
+                "Are you sure you want to logout?"
+            );
+
+
+        if (confirmLogout) {
+
+            localStorage.removeItem(
+                "adminLoggedIn"
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    }
+
+
+    /* ==================================================
+       LOAD DASHBOARD
+    ================================================== */
+
+    loadAdminDashboard();
+
+</script>
+
+
+</body>
+
+</html>

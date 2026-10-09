@@ -1,0 +1,1661 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #172554;
+    background: #f7f9ff;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 78px;
+
+    background: linear-gradient(
+        90deg,
+        #071d49,
+        #102d6b,
+        #171a55
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+}
+
+.logo-box {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #00d4ff,
+        #3b5bff
+    );
+
+    border-radius: 12px;
+
+    font-size: 23px;
+}
+
+.logo h2 {
+    font-size: 22px;
+}
+
+.logo h2 span {
+    color: #21d4fd;
+}
+
+.logo small {
+    display: block;
+    color: #b9c7e8;
+    font-size: 9px;
+}
+
+
+/* NAVIGATION */
+
+nav {
+    display: flex;
+    gap: 27px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #e5ebff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 28px 0;
+
+    transition: 0.3s;
+
+    position: relative;
+}
+
+nav a:hover,
+nav a.active {
+    color: #28d9ff;
+}
+
+nav a.active::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 18px;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #28d9ff;
+
+    border-radius: 10px;
+}
+
+
+/* NAV BUTTONS */
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn,
+.register-btn {
+    text-decoration: none;
+
+    padding: 10px 21px;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login-btn {
+    color: white;
+
+    border: 1px solid #5e72ff;
+}
+
+.register-btn {
+    color: white;
+
+    background: linear-gradient(
+        90deg,
+        #6d28ff,
+        #c026ff
+    );
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 580px;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(52,211,255,0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eaf9ff,
+            #f2f0ff 50%,
+            #fff8ef
+        );
+
+    padding: 70px 8%;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    background: rgba(116, 72, 255, 0.1);
+
+    border-radius: 50%;
+
+    right: -180px;
+    top: -150px;
+}
+
+
+.hero-content {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.hero-left {
+    width: 53%;
+}
+
+
+.tag {
+    display: inline-block;
+
+    background: #d8fff1;
+
+    color: #008b65;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 20px;
+}
+
+
+.hero h1 {
+    font-size: 62px;
+
+    line-height: 1.05;
+
+    color: #10245b;
+
+    margin-bottom: 25px;
+
+    letter-spacing: -2px;
+}
+
+
+.hero h1 span {
+    background: linear-gradient(
+        90deg,
+        #155bea,
+        #7b22ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.hero-left > p {
+    max-width: 600px;
+
+    color: #53627f;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+
+.primary-btn,
+.outline-btn {
+    text-decoration: none;
+
+    padding: 15px 25px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.primary-btn {
+    color: white;
+
+    background: linear-gradient(
+        90deg,
+        #155bea,
+        #8b1dff
+    );
+
+    box-shadow:
+        0 10px 25px rgba(80,50,220,0.3);
+}
+
+
+.outline-btn {
+    color: #162c62;
+
+    border: 2px solid #8b5cf6;
+
+    background: white;
+}
+
+
+.primary-btn:hover,
+.outline-btn:hover {
+    transform: translateY(-4px);
+}
+
+
+/* HERO USERS */
+
+.hero-users {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.user-circles {
+    font-size: 23px;
+
+    background: white;
+
+    padding: 7px 12px;
+
+    border-radius: 30px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.hero-users strong {
+    display: block;
+
+    color: #172554;
+
+    font-size: 13px;
+}
+
+.hero-users small {
+    color: #73809b;
+}
+
+
+/* ================= HERO VOTE ILLUSTRATION ================= */
+
+.hero-right {
+    width: 45%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.hero-circle {
+    width: 470px;
+    height: 420px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dff8ff,
+            #e8e0ff
+        );
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-shadow:
+        inset 0 0 50px rgba(255,255,255,0.8);
+}
+
+
+/* INDIA COLORS */
+
+.flag-design {
+    position: absolute;
+
+    top: 55px;
+
+    font-size: 50px;
+
+    letter-spacing: -15px;
+
+    transform: rotate(-8deg);
+}
+
+
+/* BALLOT BOX */
+
+.ballot-box {
+    position: relative;
+
+    margin-top: 70px;
+}
+
+.ballot-top {
+    width: 230px;
+    height: 35px;
+
+    background: #0759d9;
+
+    border-radius: 10px 10px 5px 5px;
+
+    transform: perspective(100px)
+               rotateX(10deg);
+}
+
+
+.ballot-body {
+    width: 220px;
+    height: 170px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1766e8,
+            #1548b9
+        );
+
+    border-radius: 5px 5px 18px 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    box-shadow:
+        0 25px 30px rgba(20,70,170,0.3);
+}
+
+
+.ballot-paper {
+    width: 60px;
+    height: 70px;
+
+    background: white;
+
+    color: #1160df;
+
+    font-size: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-top: -45px;
+
+    margin-bottom: 12px;
+
+    border-radius: 5px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+
+.ballot-body h2 {
+    letter-spacing: 4px;
+}
+
+
+/* FLOATING CARDS */
+
+.floating-card {
+    position: absolute;
+
+    background: white;
+
+    padding: 12px 17px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    font-size: 13px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.12);
+
+    animation: float 3s ease-in-out infinite;
+}
+
+
+.card-one {
+    left: 5px;
+    top: 120px;
+
+    color: #087c58;
+}
+
+
+.card-two {
+    right: 0;
+    bottom: 70px;
+
+    color: #145be2;
+}
+
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================= FEATURES ================= */
+
+.features {
+    max-width: 1150px;
+
+    margin: -35px auto 0;
+
+    position: relative;
+
+    z-index: 10;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 45px rgba(30,50,100,0.12);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    padding: 25px;
+}
+
+
+.feature-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 10px 20px;
+
+    border-right: 1px solid #e5e9f3;
+}
+
+.feature-card:last-child {
+    border-right: none;
+}
+
+
+.feature-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    flex-shrink: 0;
+}
+
+
+.feature-icon.green {
+    background: #dcfce7;
+}
+
+.feature-icon.purple {
+    background: #ede9fe;
+}
+
+.feature-icon.blue {
+    background: #dbeafe;
+}
+
+.feature-icon.orange {
+    background: #ffedd5;
+}
+
+
+.feature-card h3 {
+    font-size: 15px;
+
+    color: #172554;
+}
+
+.feature-card p {
+    color: #73809b;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.section {
+    padding: 100px 7%;
+}
+
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+.mini-title {
+    color: #7544ed;
+
+    font-weight: bold;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+
+.section-heading h2 {
+    color: #14265b;
+
+    font-size: 40px;
+}
+
+
+.section-heading h2 span {
+    background: linear-gradient(
+        90deg,
+        #155bea,
+        #8b20ff
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.section-heading p {
+    color: #71809b;
+
+    margin-top: 15px;
+}
+
+
+/* ================= SERVICES ================= */
+
+.service-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 25px;
+}
+
+
+.service-card {
+    padding: 30px;
+
+    border-radius: 18px;
+
+    border: 1px solid transparent;
+
+    transition: 0.3s;
+
+    min-height: 290px;
+}
+
+
+.service-card:hover {
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.1);
+}
+
+
+.green-card {
+    background: #effdf6;
+    border-color: #b8efd6;
+}
+
+
+.blue-card {
+    background: #eff8ff;
+    border-color: #c3e5ff;
+}
+
+
+.purple-card {
+    background: #f6f1ff;
+    border-color: #ddcaff;
+}
+
+
+.orange-card {
+    background: #fff7ed;
+    border-color: #ffddb8;
+}
+
+
+.service-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: white;
+
+    font-size: 30px;
+
+    margin-bottom: 22px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+
+.service-card h3 {
+    color: #172554;
+
+    margin-bottom: 12px;
+}
+
+
+.service-card p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+
+.service-card a {
+    text-decoration: none;
+
+    font-weight: bold;
+
+    color: #155bea;
+}
+
+
+/* ================= ELECTION BANNER ================= */
+
+.election-banner {
+    max-width: 1200px;
+
+    margin: 0 auto 30px;
+
+    padding: 30px 40px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #4f20e9,
+            #8b24ff,
+            #09a8ee
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    box-shadow:
+        0 15px 35px rgba(88,40,200,0.25);
+}
+
+
+.banner-icon {
+    font-size: 42px;
+}
+
+
+.banner-text {
+    flex: 1;
+}
+
+
+.banner-text small {
+    color: #d9caff;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+.banner-text h2 {
+    font-size: 27px;
+
+    margin: 5px 0;
+}
+
+
+.banner-text p {
+    color: #e4ddff;
+}
+
+
+.election-banner a {
+    text-decoration: none;
+
+    background: white;
+
+    color: #5421ce;
+
+    padding: 13px 22px;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+}
+
+
+/* ================= HOW IT WORKS ================= */
+
+.how-section {
+    background:
+        linear-gradient(
+            180deg,
+            #f8f9ff,
+            #edf7ff
+        );
+}
+
+
+.steps {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+.step {
+    width: 230px;
+
+    background: white;
+
+    padding: 25px 20px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    position: relative;
+
+    box-shadow:
+        0 10px 30px rgba(30,60,120,0.08);
+
+    transition: 0.3s;
+}
+
+
+.step:hover {
+    transform: translateY(-8px);
+}
+
+
+.step-number {
+    position: absolute;
+
+    top: 12px;
+
+    left: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    background: linear-gradient(
+        135deg,
+        #155bea,
+        #8b20ff
+    );
+}
+
+
+.step-icon {
+    font-size: 42px;
+
+    margin: 15px 0;
+}
+
+
+.step h3 {
+    color: #172554;
+
+    margin-bottom: 8px;
+}
+
+
+.step p {
+    color: #71809b;
+
+    font-size: 13px;
+}
+
+
+.arrow {
+    font-size: 30px;
+
+    color: #7747e9;
+}
+
+
+/* ================= GUIDELINES ================= */
+
+.guidelines {
+    max-width: 1200px;
+
+    margin: 70px auto;
+
+    padding: 60px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #e9fff5,
+            #f0ebff
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+
+.guideline-left {
+    width: 60%;
+}
+
+
+.guideline-left h2 {
+    font-size: 40px;
+
+    color: #14265b;
+
+    margin: 12px 0;
+}
+
+
+.guideline-left h2 span {
+    color: #7142ed;
+}
+
+
+.guideline-left > p {
+    color: #687892;
+
+    margin-bottom: 25px;
+}
+
+
+.guideline-list {
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.guideline-list div {
+    color: #40506d;
+
+    background: white;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+}
+
+
+.guideline-list span {
+    color: #00a76f;
+
+    font-weight: bold;
+
+    margin-right: 8px;
+}
+
+
+.vote-message {
+    width: 280px;
+
+    padding: 35px;
+
+    background: white;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(50,60,120,0.12);
+}
+
+
+.big-icon {
+    font-size: 60px;
+}
+
+
+.vote-message h3 {
+    color: #172554;
+
+    margin-top: 10px;
+}
+
+
+.vote-message h1 {
+    color: #7142ed;
+
+    font-size: 35px;
+
+    margin: 5px 0;
+}
+
+
+.vote-message p {
+    color: #71809b;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about-section {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 80px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+
+.about-image {
+    width: 45%;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+.about-circle {
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dff8ff,
+            #e8dcff
+        );
+
+    box-shadow:
+        0 20px 50px rgba(80,70,180,0.15);
+}
+
+
+.about-text {
+    flex: 1;
+}
+
+
+.about-text h2 {
+    color: #14265b;
+
+    font-size: 40px;
+
+    margin: 10px 0 20px;
+}
+
+
+.about-text h2 span {
+    color: #7142ed;
+}
+
+
+.about-text > p {
+    color: #687892;
+
+    line-height: 1.8;
+
+    margin-bottom: 12px;
+}
+
+
+.modules {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.modules div {
+    padding: 13px 18px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+    color: #172554;
+}
+
+
+/* ================= ADMIN BANNER ================= */
+
+.admin-banner {
+    margin: 40px 7%;
+
+    padding: 45px 55px;
+
+    border-radius: 25px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            100deg,
+            #071d49,
+            #243ea4,
+            #7028d8
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.admin-banner small {
+    color: #71e7ff;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+
+.admin-banner h2 {
+    font-size: 30px;
+
+    margin: 8px 0;
+}
+
+
+.admin-banner p {
+    color: #cdd8ff;
+}
+
+
+.admin-banner a {
+    text-decoration: none;
+
+    color: #172554;
+
+    background: white;
+
+    padding: 14px 24px;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background:
+        linear-gradient(
+            120deg,
+            #061638,
+            #0b2050
+        );
+
+    color: white;
+
+    padding: 60px 7% 20px;
+
+    margin-top: 60px;
+}
+
+
+.footer-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1.5fr;
+
+    gap: 50px;
+}
+
+
+.footer-logo {
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+
+.footer-logo span {
+    color: #20d7ff;
+}
+
+
+.footer-brand p {
+    color: #9eafd2;
+
+    line-height: 1.7;
+
+    max-width: 320px;
+}
+
+
+.footer-grid h3 {
+    color: #21d7ff;
+
+    margin-bottom: 18px;
+}
+
+
+.footer-grid a {
+    display: block;
+
+    text-decoration: none;
+
+    color: #aebbd5;
+
+    margin: 10px 0;
+
+    transition: 0.3s;
+}
+
+
+.footer-grid a:hover {
+    color: white;
+
+    transform: translateX(4px);
+}
+
+
+.footer-grid p {
+    color: #aebbd5;
+
+    margin: 10px 0;
+
+    font-size: 14px;
+}
+
+
+.footer-bottom {
+    max-width: 1200px;
+
+    margin: 40px auto 0;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #26385f;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #8495bb;
+
+    font-size: 13px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px) {
+
+    nav {
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .features {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:800px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 15px 5%;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    nav {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        padding: 8px;
+    }
+
+    nav a.active::after {
+        bottom: 0;
+    }
+
+
+    .hero-content {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .hero-left,
+    .hero-right {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+
+    .hero-users {
+        justify-content: center;
+    }
+
+
+    .hero-circle {
+        width: 350px;
+        height: 350px;
+    }
+
+
+    .features {
+        margin: 20px;
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .feature-card {
+        border-right: none;
+
+        border-bottom: 1px solid #eee;
+
+        padding: 15px;
+    }
+
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .steps {
+        flex-direction: column;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+    }
+
+
+    .guidelines {
+        margin: 30px 5%;
+
+        flex-direction: column;
+
+        padding: 35px 25px;
+    }
+
+    .guideline-left {
+        width: 100%;
+    }
+
+
+    .about-section {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .about-image {
+        width: 100%;
+    }
+
+
+    .modules {
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    .election-banner,
+    .admin-banner {
+        margin: 25px 5%;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    .logo {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .nav-buttons {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .hero {
+        padding: 50px 5%;
+    }
+
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+
+    .hero-circle {
+        width: 290px;
+        height: 290px;
+    }
+
+
+    .ballot-top {
+        width: 180px;
+    }
+
+    .ballot-body {
+        width: 170px;
+    }
+
+
+    .floating-card {
+        font-size: 11px;
+    }
+
+
+    .section-heading h2,
+    .guideline-left h2,
+    .about-text h2 {
+        font-size: 30px;
+    }
+
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+
+    .footer-brand p {
+        margin: auto;
+    }
+
+
+    .footer-bottom {
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 10px;
+    }
+
+}

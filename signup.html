@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | VoteConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================= SIGNUP PAGE ================= */
+
+        .signup-page {
+            min-height: calc(100vh - 78px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 5%;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(0, 195, 255, 0.25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(135, 50, 255, 0.25),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #eaf9ff,
+                    #f5f0ff,
+                    #fff8ed
+                );
+        }
+
+
+        .signup-container {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+
+            background: white;
+
+            border-radius: 30px;
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(30, 45, 100, 0.18);
+        }
+
+
+        /* ================= LEFT SIDE ================= */
+
+        .signup-left {
+            padding: 55px;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #09245a,
+                    #155bea,
+                    #7525e8
+                );
+
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .signup-left::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.08);
+
+            top: -100px;
+            right: -100px;
+        }
+
+
+        .signup-left::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            background: rgba(0,220,255,0.12);
+
+            bottom: -100px;
+            left: -80px;
+        }
+
+
+        .signup-logo {
+            font-size: 55px;
+            margin-bottom: 20px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .signup-left h1 {
+            font-size: 40px;
+            margin-bottom: 18px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .signup-left h1 span {
+            color: #35ddff;
+        }
+
+
+        .signup-left > p {
+            color: #d8e3ff;
+
+            line-height: 1.8;
+            font-size: 16px;
+
+            max-width: 420px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .signup-benefits {
+            margin-top: 30px;
+
+            display: grid;
+            gap: 15px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .signup-benefit {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            color: #edf3ff;
+
+            font-size: 14px;
+        }
+
+
+        .signup-benefit span {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,0.15);
+
+            border-radius: 50%;
+        }
+
+
+        /* ================= RIGHT SIDE ================= */
+
+        .signup-right {
+            padding: 45px 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .signup-heading {
+            margin-bottom: 25px;
+        }
+
+
+        .signup-heading small {
+            color: #7041e8;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            font-size: 12px;
+        }
+
+
+        .signup-heading h2 {
+            color: #14265b;
+
+            font-size: 34px;
+
+            margin: 8px 0;
+        }
+
+
+        .signup-heading p {
+            color: #71809b;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .signup-form {
+            display: grid;
+
+            gap: 15px;
+        }
+
+
+        .form-row {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .form-group {
+            display: grid;
+
+            gap: 7px;
+        }
+
+
+        .form-group label {
+            color: #26365d;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .input-box {
+            position: relative;
+        }
+
+
+        .input-box span {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 17px;
+        }
+
+
+        .input-box input {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 13px 14px 13px 45px;
+
+            border: 1px solid #d9dfec;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+            background: #fbfcff;
+        }
+
+
+        .input-box input:focus {
+            border-color: #5c43e8;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(92,67,232,0.08);
+        }
+
+
+        /* ================= TERMS ================= */
+
+        .terms {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 8px;
+
+            margin-top: 3px;
+
+            color: #687892;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .terms input {
+            margin-top: 3px;
+        }
+
+
+        .terms a {
+            color: #5b3ee5;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .signup-submit {
+            border: none;
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #155bea,
+                    #8225ed
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 25px rgba(70,55,220,0.25);
+        }
+
+
+        .signup-submit:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 30px rgba(70,55,220,0.35);
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        #signupMessage {
+            display: none;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        /* ================= LOGIN LINK ================= */
+
+        .login-text {
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #71809b;
+
+            font-size: 14px;
+        }
+
+
+        .login-text a {
+            color: #653ee5;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .signup-container {
+                grid-template-columns: 1fr;
+            }
+
+            .signup-left {
+                padding: 40px;
+
+                text-align: center;
+            }
+
+            .signup-left > p {
+                margin: auto;
+            }
+
+            .signup-benefits {
+                text-align: left;
+            }
+
+            .signup-right {
+                padding: 40px 30px;
+            }
+        }
+
+
+        @media(max-width: 500px) {
+
+            .signup-page {
+                padding: 25px 15px;
+            }
+
+            .signup-left {
+                padding: 35px 25px;
+            }
+
+            .signup-left h1 {
+                font-size: 32px;
+            }
+
+            .signup-right {
+                padding: 35px 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            🗳️
+        </div>
+
+        <div>
+
+            <h2>
+                Vote<span>Connect</span>
+            </h2>
+
+            <small>
+                Online Voting System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#services">
+            Services
+        </a>
+
+        <a href="index.html#how">
+            How It Works
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+        <a href="index.html#about">
+            About
+        </a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <a href="login.html"
+           class="login-btn">
+            Login
+        </a>
+
+        <a href="signup.html"
+           class="register-btn">
+            Register
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= SIGNUP PAGE ================= -->
+
+<section class="signup-page">
+
+
+    <div class="signup-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="signup-left">
+
+            <div class="signup-logo">
+                🗳️
+            </div>
+
+            <h1>
+                Join <span>VoteConnect!</span>
+            </h1>
+
+            <p>
+                Create your voter account and participate
+                in the digital voting process. Your vote
+                helps shape the future.
+            </p>
+
+
+            <div class="signup-benefits">
+
+                <div class="signup-benefit">
+                    <span>🔒</span>
+                    Secure Voting
+                </div>
+
+                <div class="signup-benefit">
+                    <span>⚡</span>
+                    Fast & Easy Registration
+                </div>
+
+                <div class="signup-benefit">
+                    <span>🗳️</span>
+                    One Person, One Vote
+                </div>
+
+                <div class="signup-benefit">
+                    <span>📊</span>
+                    Transparent Election Results
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="signup-right">
+
+
+            <div class="signup-heading">
+
+                <small>
+                    VOTER REGISTRATION
+                </small>
+
+                <h2>
+                    Create Your Account
+                </h2>
+
+                <p>
+                    Enter your details to register as a voter.
+                </p>
+
+            </div>
+
+
+            <!-- SIGNUP FORM -->
+
+            <form id="signupForm"
+                  class="signup-form">
+
+
+                <!-- NAME + VOTER ID -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>👤</span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="voterId">
+                            Voter ID
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>🪪</span>
+
+                            <input
+                                type="text"
+                                id="voterId"
+                                placeholder="Example: VOTER001"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL + PHONE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>📧</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Mobile Number
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>📱</span>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter mobile number"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AGE -->
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>🎂</span>
+
+                        <input
+                            type="number"
+                            id="age"
+                            placeholder="Enter your age"
+                            min="18"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD + CONFIRM PASSWORD -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>🔐</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Minimum 6 characters"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>🔑</span>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Re-enter password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the voting system
+                        <a href="#">Terms & Conditions</a>
+                        and confirm that the information
+                        provided is correct.
+                    </span>
+
+                </label>
+
+
+                <!-- MESSAGE -->
+
+                <div id="signupMessage"></div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="signup-submit">
+
+                    Create Voter Account →
+
+                </button>
+
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login Now
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+const signupForm =
+    document.getElementById("signupForm");
+
+const signupMessage =
+    document.getElementById("signupMessage");
+
+
+signupForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        /* Get values */
+
+        const name =
+            document.getElementById("name")
+            .value
+            .trim();
+
+        const voterId =
+            document.getElementById("voterId")
+            .value
+            .trim();
+
+        const email =
+            document.getElementById("email")
+            .value
+            .trim();
+
+        const phone =
+            document.getElementById("phone")
+            .value
+            .trim();
+
+        const age =
+            Number(
+                document.getElementById("age").value
+            );
+
+        const password =
+            document.getElementById("password")
+            .value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword")
+            .value;
+
+        const terms =
+            document.getElementById("terms")
+            .checked;
+
+
+        /* Get existing users */
+
+        const users =
+            JSON.parse(
+                localStorage.getItem("voters")
+            ) || [];
+
+
+        /* Check duplicate Voter ID */
+
+        const existingUser =
+            users.find(function(user) {
+
+                return (
+                    user.voterId.toLowerCase() ===
+                    voterId.toLowerCase()
+                );
+
+            });
+
+
+        if (existingUser) {
+
+            showMessage(
+                "❌ This Voter ID is already registered.",
+                "#ffe5e5",
+                "#d11a2a"
+            );
+
+            return;
+        }
+
+
+        /* Age validation */
+
+        if (age < 18) {
+
+            showMessage(
+                "❌ You must be at least 18 years old.",
+                "#ffe5e5",
+                "#d11a2a"
+            );
+
+            return;
+        }
+
+
+        /* Password validation */
+
+        if (password.length < 6) {
+
+            showMessage(
+                "❌ Password must contain at least 6 characters.",
+                "#ffe5e5",
+                "#d11a2a"
+            );
+
+            return;
+        }
+
+
+        /* Confirm password */
+
+        if (password !== confirmPassword) {
+
+            showMessage(
+                "❌ Passwords do not match.",
+                "#ffe5e5",
+                "#d11a2a"
+            );
+
+            return;
+        }
+
+
+        /* Terms */
+
+        if (!terms) {
+
+            showMessage(
+                "❌ Please accept the Terms & Conditions.",
+                "#ffe5e5",
+                "#d11a2a"
+            );
+
+            return;
+        }
+
+
+        /* Create new user */
+
+        const newUser = {
+
+            name: name,
+
+            voterId: voterId,
+
+            email: email,
+
+            phone: phone,
+
+            age: age,
+
+            password: password,
+
+            hasVoted: false
+
+        };
+
+
+        /* Add user */
+
+        users.push(newUser);
+
+
+        /* Save to LocalStorage */
+
+        localStorage.setItem(
+            "voters",
+            JSON.stringify(users)
+        );
+
+
+        /* Success message */
+
+        showMessage(
+            "✅ Registration successful! Redirecting to Login...",
+            "#dcfce7",
+            "#087443"
+        );
+
+
+        /* Redirect */
+
+        setTimeout(function() {
+
+            window.location.href =
+                "login.html";
+
+        }, 1200);
+
+    }
+);
+
+
+/* ================= MESSAGE FUNCTION ================= */
+
+function showMessage(
+    message,
+    background,
+    color
+) {
+
+    signupMessage.style.display = "block";
+
+    signupMessage.style.background =
+        background;
+
+    signupMessage.style.color =
+        color;
+
+    signupMessage.innerHTML =
+        message;
+
+}
+
+</script>
+
+
+</body>
+
+</html>

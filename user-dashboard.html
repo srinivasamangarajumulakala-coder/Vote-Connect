@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard | VoteConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================= DASHBOARD ================= */
+
+        .dashboard-page {
+            min-height: calc(100vh - 78px);
+            padding: 55px 7%;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(0, 200, 255, 0.15),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(120, 50, 255, 0.15),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f0fbff,
+                    #f7f3ff,
+                    #fff9f0
+                );
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .dashboard-header {
+            max-width: 1200px;
+            margin: auto auto 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .welcome-text small {
+            color: #7041e8;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+
+        .welcome-text h1 {
+            color: #14265b;
+            font-size: 38px;
+            margin: 7px 0;
+        }
+
+
+        .welcome-text h1 span {
+            color: #7041e8;
+        }
+
+
+        .welcome-text p {
+            color: #71809b;
+        }
+
+
+        .logout-btn {
+            border: none;
+            background: white;
+            color: #dc2626;
+
+            padding: 12px 22px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .logout-btn:hover {
+            background: #fee2e2;
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= ELECTION BANNER ================= */
+
+        .dashboard-banner {
+
+            max-width: 1200px;
+
+            margin: auto auto 30px;
+
+            padding: 35px 40px;
+
+            border-radius: 22px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #155bea,
+                    #6d28d9,
+                    #a21caf
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            box-shadow:
+                0 18px 40px rgba(70,50,190,0.22);
+        }
+
+
+        .banner-content {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .banner-big-icon {
+            width: 70px;
+            height: 70px;
+
+            background: rgba(255,255,255,0.15);
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 38px;
+        }
+
+
+        .dashboard-banner small {
+            color: #ddd6fe;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .dashboard-banner h2 {
+            font-size: 28px;
+
+            margin: 5px 0;
+        }
+
+
+        .dashboard-banner p {
+            color: #e5e7ff;
+
+            font-size: 14px;
+        }
+
+
+        .vote-now-btn {
+            text-decoration: none;
+
+            background: white;
+
+            color: #5524ce;
+
+            padding: 15px 25px;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+
+            transition: 0.3s;
+        }
+
+
+        .vote-now-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 20px rgba(0,0,0,0.15);
+        }
+
+
+        /* ================= DASHBOARD GRID ================= */
+
+        .dashboard-grid {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1.3fr 0.7fr;
+
+            gap: 25px;
+        }
+
+
+        /* ================= PROFILE CARD ================= */
+
+        .dashboard-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 12px 35px rgba(30,50,100,0.08);
+        }
+
+
+        .card-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #edf0f6;
+        }
+
+
+        .card-heading-icon {
+
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #ede9fe;
+
+            font-size: 22px;
+        }
+
+
+        .card-heading h2 {
+
+            color: #172554;
+
+            font-size: 20px;
+        }
+
+
+        .card-heading p {
+
+            color: #8490a8;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+
+        /* ================= USER PROFILE ================= */
+
+        .profile-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .profile-avatar {
+
+            width: 75px;
+            height: 75px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #155bea,
+                    #8b20ff
+                );
+
+            color: white;
+
+            font-size: 35px;
+
+            box-shadow:
+                0 10px 25px rgba(70,50,220,0.25);
+        }
+
+
+        .profile-name h3 {
+
+            color: #172554;
+
+            font-size: 21px;
+        }
+
+
+        .profile-name p {
+
+            color: #7a879e;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        /* ================= DETAILS ================= */
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .detail-box {
+
+            background: #f8faff;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            border: 1px solid #edf0f7;
+        }
+
+
+        .detail-box small {
+
+            display: block;
+
+            color: #8994aa;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .detail-box strong {
+
+            color: #26365d;
+
+            font-size: 14px;
+
+            word-break: break-word;
+        }
+
+
+        /* ================= STATUS CARD ================= */
+
+        .status-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #effdf7,
+                    #e9f8ff
+                );
+
+            border: 1px solid #ccefe0;
+        }
+
+
+        .status-icon {
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            background: #d1fae5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .status-card h2 {
+
+            color: #12623f;
+
+            margin-bottom: 8px;
+        }
+
+
+        .status-card p {
+
+            color: #5f7180;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        .status-badge {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            background: #d1fae5;
+
+            color: #087443;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= ACTION CARDS ================= */
+
+        .actions-section {
+
+            max-width: 1200px;
+
+            margin: 25px auto 0;
+        }
+
+
+        .actions-section h2 {
+
+            color: #172554;
+
+            margin-bottom: 18px;
+
+            font-size: 22px;
+        }
+
+
+        .actions-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .action-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 10px 30px rgba(30,50,100,0.08);
+
+            border: 1px solid #edf0f6;
+
+            transition: 0.3s;
+
+            display: block;
+        }
+
+
+        .action-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 18px 35px rgba(30,50,100,0.13);
+        }
+
+
+        .action-icon {
+
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 14px;
+
+            font-size: 26px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .vote-icon {
+            background: #dbeafe;
+        }
+
+
+        .result-icon {
+            background: #ede9fe;
+        }
+
+
+        .guide-icon {
+            background: #ffedd5;
+        }
+
+
+        .action-card h3 {
+
+            color: #172554;
+
+            margin-bottom: 8px;
+        }
+
+
+        .action-card p {
+
+            color: #75839c;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .action-link {
+
+            display: block;
+
+            margin-top: 15px;
+
+            color: #5d3cdd;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= SECURITY ================= */
+
+        .security-box {
+
+            max-width: 1200px;
+
+            margin: 25px auto 0;
+
+            padding: 22px 25px;
+
+            background: #fff;
+
+            border-radius: 15px;
+
+            border-left: 5px solid #22c55e;
+
+            box-shadow:
+                0 8px 25px rgba(30,50,100,0.06);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .security-box-icon {
+
+            font-size: 28px;
+        }
+
+
+        .security-box h3 {
+
+            color: #172554;
+
+            font-size: 15px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .security-box p {
+
+            color: #75839c;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:850px) {
+
+            .dashboard-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .actions-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .dashboard-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .dashboard-banner {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .dashboard-page {
+
+                padding: 35px 5%;
+            }
+
+
+            .welcome-text h1 {
+
+                font-size: 30px;
+            }
+
+
+            .dashboard-banner {
+
+                padding: 25px;
+            }
+
+
+            .banner-content {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .dashboard-card {
+
+                padding: 22px;
+            }
+
+
+            .security-box {
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            🗳️
+        </div>
+
+        <div>
+
+            <h2>
+                Vote<span>Connect</span>
+            </h2>
+
+            <small>
+                Online Voting System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="user-dashboard.html"
+           class="active">
+            Dashboard
+        </a>
+
+        <a href="vote.html">
+            Cast Vote
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+        <!-- CORRECTED REGISTER LINK -->
+        <a href="signup.html">
+            Register
+        </a>
+
+        <!-- CORRECTED LOGIN LINK -->
+        <a href="login.html">
+            Login
+        </a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <button
+            onclick="logout()"
+            class="logout-btn">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<main class="dashboard-page">
+
+
+    <!-- WELCOME -->
+
+    <div class="dashboard-header">
+
+        <div class="welcome-text">
+
+            <small>
+                VOTER DASHBOARD
+            </small>
+
+            <h1>
+                Welcome,
+                <span id="userName">
+                    Voter
+                </span> 👋
+            </h1>
+
+            <p>
+                Manage your voting activity from your dashboard.
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="logout()"
+            class="logout-btn">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+
+    <!-- ELECTION BANNER -->
+
+    <div class="dashboard-banner">
+
+
+        <div class="banner-content">
+
+            <div class="banner-big-icon">
+                🗳️
+            </div>
+
+
+            <div>
+
+                <small>
+                    CURRENT ELECTION
+                </small>
+
+                <h2>
+                    General Election 2026
+                </h2>
+
+                <p>
+                    Your participation matters.
+                    Cast your vote and make your voice heard.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="vote.html"
+           class="vote-now-btn">
+
+            🗳️ Vote Now →
+
+        </a>
+
+    </div>
+
+
+    <!-- MAIN DASHBOARD -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- PROFILE -->
+
+        <div class="dashboard-card">
+
+
+            <div class="card-heading">
+
+                <div class="card-heading-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <h2>
+                        Voter Profile
+                    </h2>
+
+                    <p>
+                        Your registered information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-top">
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+
+                <div class="profile-name">
+
+                    <h3 id="profileName">
+                        Voter Name
+                    </h3>
+
+                    <p>
+                        Registered Voter
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="details-grid">
+
+
+                <div class="detail-box">
+
+                    <small>
+                        VOTER ID
+                    </small>
+
+                    <strong id="profileVoterId">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <small>
+                        EMAIL
+                    </small>
+
+                    <strong id="profileEmail">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <small>
+                        MOBILE
+                    </small>
+
+                    <strong id="profilePhone">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <small>
+                        AGE
+                    </small>
+
+                    <strong id="profileAge">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VOTING STATUS -->
+
+        <div class="dashboard-card status-card">
+
+            <div class="status-icon">
+                ✓
+            </div>
+
+            <h2>
+                Voting Status
+            </h2>
+
+            <p id="statusText">
+                You have not cast your vote yet.
+                Click the button below to participate.
+            </p>
+
+
+            <span
+                class="status-badge"
+                id="statusBadge">
+
+                NOT VOTED
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions-section">
+
+        <h2>
+            Quick Actions
+        </h2>
+
+
+        <div class="actions-grid">
+
+
+            <a href="vote.html"
+               class="action-card">
+
+                <div class="action-icon vote-icon">
+                    🗳️
+                </div>
+
+                <h3>
+                    Cast Your Vote
+                </h3>
+
+                <p>
+                    Choose your preferred candidate
+                    and submit your vote securely.
+                </p>
+
+                <span class="action-link">
+                    Vote Now →
+                </span>
+
+            </a>
+
+
+            <a href="results.html"
+               class="action-card">
+
+                <div class="action-icon result-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Election Results
+                </h3>
+
+                <p>
+                    View the latest election results
+                    and voting statistics.
+                </p>
+
+                <span class="action-link">
+                    View Results →
+                </span>
+
+            </a>
+
+
+            <a href="index.html#guidelines"
+               class="action-card">
+
+                <div class="action-icon guide-icon">
+                    📋
+                </div>
+
+                <h3>
+                    Voting Guidelines
+                </h3>
+
+                <p>
+                    Read important information and
+                    guidelines before voting.
+                </p>
+
+                <span class="action-link">
+                    Read Guidelines →
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div class="security-box">
+
+        <div class="security-box-icon">
+            🔒
+        </div>
+
+        <div>
+
+            <h3>
+                Your Voting Information is Secure
+            </h3>
+
+            <p>
+                VoteConnect is designed to provide a
+                simple and transparent online voting experience.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    /* ================= GET CURRENT USER ================= */
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem("currentUser")
+        );
+
+
+    /* ================= CHECK LOGIN ================= */
+
+    if (!currentUser) {
+
+        alert(
+            "Please login first."
+        );
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    /* ================= DISPLAY USER ================= */
+
+    if (currentUser) {
+
+        document.getElementById("userName")
+            .textContent =
+            currentUser.name;
+
+        document.getElementById("profileName")
+            .textContent =
+            currentUser.name;
+
+        document.getElementById("profileVoterId")
+            .textContent =
+            currentUser.voterId;
+
+        document.getElementById("profileEmail")
+            .textContent =
+            currentUser.email;
+
+        document.getElementById("profilePhone")
+            .textContent =
+            currentUser.phone;
+
+        document.getElementById("profileAge")
+            .textContent =
+            currentUser.age;
+
+
+        /* ================= VOTING STATUS ================= */
+
+        if (currentUser.hasVoted === true) {
+
+            document.getElementById("statusText")
+                .textContent =
+                "You have already cast your vote for this election. Thank you for participating!";
+
+            document.getElementById("statusBadge")
+                .textContent =
+                "✓ VOTE CAST";
+
+            document.getElementById("statusBadge")
+                .style.background =
+                "#d1fae5";
+
+            document.getElementById("statusBadge")
+                .style.color =
+                "#087443";
+
+        }
+
+    }
+
+
+    /* ================= LOGOUT ================= */
+
+    function logout() {
+
+        const confirmLogout =
+            confirm(
+                "Are you sure you want to logout?"
+            );
+
+        if (confirmLogout) {
+
+            localStorage.removeItem(
+                "currentUser"
+            );
+
+            alert(
+                "You have been logged out successfully."
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

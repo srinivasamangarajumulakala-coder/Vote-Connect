@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | VoteConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff,
+                    #e0f2fe
+                );
+        }
+
+        .admin-login-page {
+            min-height: calc(100vh - 75px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .admin-container {
+            width: 950px;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow:
+                0 25px 60px rgba(15, 23, 42, 0.15);
+        }
+
+        /* LEFT SIDE */
+
+        .admin-left {
+            padding: 55px 45px;
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1e1b4b,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .admin-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+            margin-bottom: 25px;
+        }
+
+        .admin-left h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .admin-left p {
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .admin-features {
+            list-style: none;
+        }
+
+        .admin-features li {
+            margin: 16px 0;
+            font-size: 15px;
+        }
+
+        /* RIGHT SIDE */
+
+        .admin-right {
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-title {
+            color: #172554;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #334155;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .input-box input {
+            width: 100%;
+            box-sizing: border-box;
+
+            padding: 14px 15px 14px 45px;
+
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+
+            font-size: 15px;
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #6366f1;
+            box-shadow:
+                0 0 0 4px rgba(99,102,241,0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(79,70,229,0.3);
+        }
+
+        .error-message {
+            display: none;
+
+            background: #fee2e2;
+            color: #b91c1c;
+
+            padding: 12px;
+            border-radius: 10px;
+
+            text-align: center;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .demo-login {
+            margin-top: 25px;
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+
+            color: #475569;
+
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .demo-login strong {
+            color: #4f46e5;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #4f46e5;
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .admin-container {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-left {
+                padding: 40px 30px;
+                text-align: center;
+                align-items: center;
+            }
+
+            .admin-left h1 {
+                font-size: 30px;
+            }
+
+            .admin-right {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .admin-login-page {
+                padding: 25px 15px;
+            }
+
+            .admin-left {
+                padding: 35px 25px;
+            }
+
+            .admin-right {
+                padding: 35px 25px;
+            }
+
+            .admin-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🗳️ VoteConnect
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="login.html">
+                Voter Login
+            </a>
+
+            <a href="signup.html">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         ADMIN LOGIN
+    ========================== -->
+
+    <main class="admin-login-page">
+
+        <div class="admin-container">
+
+
+            <!-- LEFT -->
+
+            <section class="admin-left">
+
+                <div class="admin-icon">
+                    🔐
+                </div>
+
+                <h1>
+                    Admin Portal
+                </h1>
+
+                <p>
+                    Secure administration panel for managing
+                    voters, elections and voting results.
+                </p>
+
+                <ul class="admin-features">
+
+                    <li>
+                        ✅ Manage registered voters
+                    </li>
+
+                    <li>
+                        ✅ Monitor voting activity
+                    </li>
+
+                    <li>
+                        ✅ View election statistics
+                    </li>
+
+                    <li>
+                        ✅ Monitor candidate results
+                    </li>
+
+                    <li>
+                        ✅ Maintain election transparency
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- RIGHT -->
+
+            <section class="admin-right">
+
+                <h2 class="login-title">
+                    Admin Login
+                </h2>
+
+                <p class="login-subtitle">
+                    Enter your administrator credentials
+                </p>
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="errorMessage"
+                    class="error-message">
+
+                    Invalid username or password.
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form id="adminLoginForm">
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Username
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="adminUsername"
+                                placeholder="Enter admin username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>
+                                🔑
+                            </span>
+
+                            <input
+                                type="password"
+                                id="adminPassword"
+                                placeholder="Enter admin password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-btn">
+
+                        🔐 Login to Admin Panel
+
+                    </button>
+
+                </form>
+
+
+                <!-- DEMO CREDENTIALS -->
+
+                <div class="demo-login">
+
+                    <strong>Demo Admin Credentials</strong>
+
+                    <br><br>
+
+                    Username:
+                    <strong>admin</strong>
+
+                    <br>
+
+                    Password:
+                    <strong>admin123</strong>
+
+                </div>
+
+
+                <a
+                    href="index.html"
+                    class="back-home">
+
+                    ← Back to Home
+
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const adminForm =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+
+        adminForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    document.getElementById(
+                        "adminUsername"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "adminPassword"
+                    ).value;
+
+
+                const errorMessage =
+                    document.getElementById(
+                        "errorMessage"
+                    );
+
+
+                /* DEMO ADMIN LOGIN */
+
+                if (
+                    username === "admin" &&
+                    password === "admin123"
+                ) {
+
+                    /* Save admin session */
+
+                    localStorage.setItem(
+                        "adminLoggedIn",
+                        "true"
+                    );
+
+
+                    /* Redirect */
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                }
+
+                else {
+
+                    errorMessage.style.display =
+                        "block";
+
+                    errorMessage.textContent =
+                        "❌ Invalid username or password.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

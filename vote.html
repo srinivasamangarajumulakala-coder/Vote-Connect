@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cast Vote | VoteConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef7ff,
+                    #f7f0ff,
+                    #fff8ed
+                );
+        }
+
+        .vote-page {
+            min-height: 100vh;
+            padding: 50px 7%;
+        }
+
+        .vote-header {
+            max-width: 1100px;
+            margin: auto auto 25px;
+        }
+
+        .vote-header h1 {
+            color: #172554;
+            margin-bottom: 8px;
+        }
+
+        .vote-header p {
+            color: #64748b;
+        }
+
+        .election-box {
+            max-width: 1100px;
+            margin: auto auto 30px;
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #155bea,
+                    #6d28d9,
+                    #a21caf
+                );
+
+            box-shadow:
+                0 15px 35px rgba(80,50,180,0.20);
+        }
+
+        .election-box h2 {
+            margin: 0 0 8px;
+        }
+
+        .security-notice {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+            background: white;
+            padding: 18px 22px;
+            border-left: 5px solid #22c55e;
+            border-radius: 12px;
+            color: #475569;
+        }
+
+        .candidate-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+        .candidate-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+
+            border: 2px solid transparent;
+
+            box-shadow:
+                0 10px 30px rgba(30,50,100,0.08);
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .candidate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .candidate-card.selected {
+            border-color: #6d28d9;
+            box-shadow:
+                0 15px 35px rgba(109,40,217,0.20);
+        }
+
+        .candidate-top {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .candidate-symbol {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #ede9fe;
+
+            font-size: 32px;
+        }
+
+        .candidate-card h3 {
+            margin: 0 0 6px;
+            color: #172554;
+        }
+
+        .candidate-card p {
+            margin: 3px 0;
+            color: #64748b;
+        }
+
+        .candidate-card input {
+            margin-left: auto;
+            width: 20px;
+            height: 20px;
+        }
+
+        .submit-section {
+            max-width: 1100px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .submit-btn {
+            border: none;
+            padding: 16px 35px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #155bea,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px rgba(80,50,200,0.20);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .already-voted {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 45px;
+            text-align: center;
+
+            background: white;
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(30,50,100,0.10);
+        }
+
+        .already-voted .icon {
+            font-size: 60px;
+        }
+
+        .already-voted h2 {
+            color: #15803d;
+        }
+
+        .already-voted p {
+            color: #64748b;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+
+            text-decoration: none;
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            background: #ede9fe;
+            color: #5b21b6;
+
+            font-weight: bold;
+        }
+
+        @media(max-width:700px) {
+
+            .candidate-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vote-page {
+                padding: 35px 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="vote-page">
+
+    <div class="vote-header">
+
+        <h1>🗳️ Cast Your Vote</h1>
+
+        <p>
+            Select one candidate and submit your vote.
+        </p>
+
+    </div>
+
+
+    <div class="election-box">
+
+        <h2>General Election 2026</h2>
+
+        <p>
+            Choose your preferred candidate carefully.
+            You can vote only once.
+        </p>
+
+    </div>
+
+
+    <div class="security-notice">
+
+        🔒 <strong>Secure Voting:</strong>
+        Your vote will be recorded after submission.
+        You cannot change your vote after submitting.
+
+    </div>
+
+
+    <div id="votingArea">
+
+        <div class="candidate-grid">
+
+
+            <!-- CANDIDATE 1 -->
+
+            <label class="candidate-card">
+
+                <div class="candidate-top">
+
+                    <div class="candidate-symbol">
+                        🌳
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Aarav Sharma
+                        </h3>
+
+                        <p>
+                            People's Progress
+                        </p>
+
+                        <p>
+                            Symbol: Tree
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="radio"
+                        name="candidate"
+                        value="candidate1"
+                        data-name="Aarav Sharma">
+
+                </div>
+
+            </label>
+
+
+            <!-- CANDIDATE 2 -->
+
+            <label class="candidate-card">
+
+                <div class="candidate-top">
+
+                    <div class="candidate-symbol">
+                        ⭐
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Priya Reddy
+                        </h3>
+
+                        <p>
+                            United Development
+                        </p>
+
+                        <p>
+                            Symbol: Star
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="radio"
+                        name="candidate"
+                        value="candidate2"
+                        data-name="Priya Reddy">
+
+                </div>
+
+            </label>
+
+
+            <!-- CANDIDATE 3 -->
+
+            <label class="candidate-card">
+
+                <div class="candidate-top">
+
+                    <div class="candidate-symbol">
+                        🦁
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Rahul Kumar
+                        </h3>
+
+                        <p>
+                            National Youth Front
+                        </p>
+
+                        <p>
+                            Symbol: Lion
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="radio"
+                        name="candidate"
+                        value="candidate3"
+                        data-name="Rahul Kumar">
+
+                </div>
+
+            </label>
+
+
+            <!-- CANDIDATE 4 -->
+
+            <label class="candidate-card">
+
+                <div class="candidate-top">
+
+                    <div class="candidate-symbol">
+                        🌸
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Sneha Patel
+                        </h3>
+
+                        <p>
+                            Progressive Alliance
+                        </p>
+
+                        <p>
+                            Symbol: Flower
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="radio"
+                        name="candidate"
+                        value="candidate4"
+                        data-name="Sneha Patel">
+
+                </div>
+
+            </label>
+
+        </div>
+
+
+        <div class="submit-section">
+
+            <button
+                class="submit-btn"
+                onclick="submitVote()">
+
+                🗳️ Submit My Vote
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="alreadyVoted"
+        class="already-voted"
+        style="display:none;">
+
+        <div class="icon">
+            ✅
+        </div>
+
+        <h2>
+            Vote Already Submitted
+        </h2>
+
+        <p>
+            You have already cast your vote for this election.
+        </p>
+
+        <a
+            href="user-dashboard.html"
+            class="back-btn">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* ================= CURRENT USER ================= */
+
+    let currentUser =
+        JSON.parse(
+            localStorage.getItem("currentUser")
+        );
+
+
+    /* ================= LOGIN CHECK ================= */
+
+    if (!currentUser) {
+
+        alert("Please login first.");
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    /* ================= CHECK ALREADY VOTED ================= */
+
+    if (
+        currentUser &&
+        currentUser.hasVoted === true
+    ) {
+
+        document.getElementById("votingArea")
+            .style.display = "none";
+
+        document.getElementById("alreadyVoted")
+            .style.display = "block";
+
+    }
+
+
+    /* ================= SELECTED CARD ================= */
+
+    const cards =
+        document.querySelectorAll(
+            ".candidate-card"
+        );
+
+
+    cards.forEach(function(card) {
+
+        const radio =
+            card.querySelector(
+                "input[type='radio']"
+            );
+
+        radio.addEventListener(
+            "change",
+            function() {
+
+                cards.forEach(
+                    function(item) {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+                card.classList.add(
+                    "selected"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* ================= SUBMIT VOTE ================= */
+
+    function submitVote() {
+
+        if (!currentUser) {
+
+            alert("Please login first.");
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        /* Prevent second vote */
+
+        if (currentUser.hasVoted === true) {
+
+            alert(
+                "You have already voted."
+            );
+
+            return;
+
+        }
+
+
+        /* Get selected candidate */
+
+        const selected =
+            document.querySelector(
+                "input[name='candidate']:checked"
+            );
+
+
+        if (!selected) {
+
+            alert(
+                "Please select a candidate."
+            );
+
+            return;
+
+        }
+
+
+        const candidateId =
+            selected.value;
+
+        const candidateName =
+            selected.getAttribute(
+                "data-name"
+            );
+
+
+        /* Confirmation */
+
+        const confirmVote =
+            confirm(
+                "Are you sure you want to vote for " +
+                candidateName +
+                "?"
+            );
+
+
+        if (!confirmVote) {
+
+            return;
+
+        }
+
+
+        /* ================= VOTE COUNTS ================= */
+
+        let votes =
+            JSON.parse(
+                localStorage.getItem("votes")
+            ) || {
+
+                candidate1: 0,
+                candidate2: 0,
+                candidate3: 0,
+                candidate4: 0
+
+            };
+
+
+        if (
+            typeof votes[candidateId]
+            !== "number"
+        ) {
+
+            votes[candidateId] = 0;
+
+        }
+
+
+        votes[candidateId]++;
+
+
+        localStorage.setItem(
+            "votes",
+            JSON.stringify(votes)
+        );
+
+
+        /* ================= UPDATE VOTER ================= */
+
+        let voters =
+            JSON.parse(
+                localStorage.getItem("voters")
+            ) || [];
+
+
+        const voterIndex =
+            voters.findIndex(
+                function(voter) {
+
+                    return (
+                        voter.voterId ===
+                        currentUser.voterId
+                    );
+
+                }
+            );
+
+
+        if (voterIndex !== -1) {
+
+            voters[voterIndex].hasVoted =
+                true;
+
+            voters[voterIndex].votedFor =
+                candidateName;
+
+            voters[voterIndex].votedCandidate =
+                candidateId;
+
+        }
+
+
+        localStorage.setItem(
+            "voters",
+            JSON.stringify(voters)
+        );
+
+
+        /* ================= UPDATE CURRENT USER ================= */
+
+        currentUser.hasVoted = true;
+
+        currentUser.votedFor =
+            candidateName;
+
+        currentUser.votedCandidate =
+            candidateId;
+
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(currentUser)
+        );
+
+
+        /* ================= VOTE RECORD ================= */
+
+        let voteRecords =
+            JSON.parse(
+                localStorage.getItem(
+                    "voteRecords"
+                )
+            ) || [];
+
+
+        const voteRecord = {
+
+            voterId:
+                currentUser.voterId,
+
+            voterName:
+                currentUser.name,
+
+            candidateId:
+                candidateId,
+
+            candidateName:
+                candidateName,
+
+            date:
+                new Date().toLocaleDateString(),
+
+            time:
+                new Date().toLocaleTimeString()
+
+        };
+
+
+        voteRecords.push(
+            voteRecord
+        );
+
+
+        localStorage.setItem(
+            "voteRecords",
+            JSON.stringify(
+                voteRecords
+            )
+        );
+
+
+        /* ================= SUCCESS ================= */
+
+        alert(
+            "✅ Your vote has been successfully submitted!"
+        );
+
+
+        window.location.href =
+            "user-dashboard.html";
+
+    }
+
+</script>
+
+</body>
+
+</html>
